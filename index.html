@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bussin Salsa | Premium Salsa Macha</title>
+  <meta
+    name="description"
+    content="Bussin Salsa brings the bold, smoky soul of salsa macha to the United States with premium ingredients and unforgettable flavor."
+  />
+  <style>
+    :root {
+      --bg: #120908;
+      --bg-soft: #1b0d0b;
+      --card: rgba(24, 10, 8, 0.72);
+      --cream: #f6dfc1;
+      --gold: #d8922f;
+      --gold-soft: #f0b15f;
+      --red: #d64d28;
+      --red-soft: #ff7a3b;
+      --green: #8a8f4a;
+      --text: #f8efe5;
+      --muted: #e2cdbd;
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 18px 40px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      line-height: 1.6;
+      background:
+        linear-gradient(rgba(10, 5, 4, 0.76), rgba(10, 5, 4, 0.84)),
+        url("background.PNG") center top / cover no-repeat fixed;
+      background-color: var(--bg);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,120,40,0.08), transparent 25%),
+        radial-gradient(circle at 80% 25%, rgba(255,60,20,0.08), transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(255,160,70,0.06), transparent 30%);
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(18, 8, 7, 0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .brand-logo {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      font-size: 0.98rem;
+      color: #f1d8c8;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-soft);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #8b2c11, #c65d1c);
+      color: #fff5ec;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,190,120,0.2);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--cream);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .hero {
+      padding: 120px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,160,80,0.08);
+      border: 1px solid rgba(255,160,80,0.16);
+      color: var(--gold-soft);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 14px;
+      line-height: 1.08;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 6vw, 5rem);
+      max-width: 11ch;
+      color: #ffe9d5;
+    }
+
+    .lead {
+      font-size: 1.15rem;
+      max-width: 60ch;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      background: rgba(22, 10, 8, 0.52);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      backdrop-filter: blur(6px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.08rem;
+      color: #ffe7d2;
+      margin-bottom: 6px;
+    }
+
+    .hero-visual {
+      background: rgba(20, 8, 7, 0.45);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-visual img {
+      width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 16px 30px rgba(0,0,0,0.28);
+    }
+
+    section {
+      padding: 54px 0;
+    }
+
+    .panel {
+      background: rgba(20, 8, 7, 0.56);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .story-grid,
+    .ingredients-grid,
+    .order-grid,
+    .footer-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .story-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: start;
+    }
+
+    .story-copy p {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .story-copy p strong {
+      color: var(--cream);
+    }
+
+    .quote {
+      font-size: 1.16rem;
+      font-weight: 700;
+      color: #ffe6d0;
+      margin-bottom: 18px;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 12px;
+    }
+
+    .check {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .check span {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(216,146,47,0.18);
+      color: var(--gold-soft);
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    .gallery-wrap {
+      margin-top: 20px;
+    }
+
+    .gallery-image {
+      width: 100%;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-caption {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .product-card {
+      background: rgba(19, 8, 7, 0.62);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      overflow: hidden;
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 18px;
+    }
+
+    .heat {
+      display: inline-block;
+      width: fit-content;
+      font-size: 0.78rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .mild { background: rgba(138,143,74,0.22); color: #dce59d; }
+    .medium { background: rgba(216,146,47,0.22); color: #ffd39a; }
+    .hot { background: rgba(214,77,40,0.22); color: #ffc1ab; }
+
+    .product-card p {
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+
+    .jar-size {
+      color: #f1d7b8;
+      font-size: 0.92rem;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      margin-top: auto;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffe8d3;
+      padding-top: 10px;
+    }
+
+    .ingredients-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .ingredient-card {
+      background: rgba(21, 9, 8, 0.58);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .ingredient-card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .order-grid {
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: start;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--cream);
+      font-size: 0.95rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(13, 6, 5, 0.78);
+      color: var(--text);
+      outline: none;
+      font: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(240,177,95,0.5);
+      box-shadow: 0 0 0 3px rgba(240,177,95,0.12);
+    }
+
+    .summary {
+      display: grid;
+      gap: 12px;
+      background: rgba(14, 6, 5, 0.72);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--muted);
+    }
+
+    .summary-row.total {
+      color: var(--cream);
+      font-weight: 800;
+      font-size: 1.12rem;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin: 0;
+    }
+
+    .email-preview {
+      background: rgba(255,255,255,0.04);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px dashed rgba(255,255,255,0.16);
+      color: var(--muted);
+      font-family: "Courier New", monospace;
+      white-space: pre-wrap;
+    }
+
+    footer {
+      padding: 26px 0 40px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+
+    .small {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .story-grid,
+      .ingredients-grid,
+      .order-grid,
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 90px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-stats,
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <div class="brand-logo">Bussin</div>
+        <div class="brand-sub">Premium Salsa Macha</div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#story">Our Story</a>
+        <a href="#flavors">Flavors</a>
+        <a href="#ingredients">Ingredients</a>
+        <a href="#order">Order</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Born from a journey. Bottled with soul.</div>
+          <h1>Smoky, bold salsa macha with a premium twist.</h1>
+          <p class="lead">
+            Bussin Salsa was inspired by a real flavor journey through Veracruz, Mexico—where smoky chiles,
+            layered spice, and deep culinary tradition came together in a way that stayed with me. I wanted to
+            bring that feeling to the United States and share it through a salsa macha that feels elevated,
+            memorable, and unmistakably premium.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#order" class="btn btn-primary">Order Now</a>
+            <a href="#story" class="btn btn-secondary">Read the Story</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>3 flavors</strong>
+              <span>Mild, Medium, and Hot</span>
+            </div>
+            <div class="stat">
+              <strong>5 oz jars</strong>
+              <span>Premium small-batch format</span>
+            </div>
+            <div class="stat">
+              <strong>$12.99</strong>
+              <span>Per jar, plus Connecticut sales tax</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-visual">
+          <img src="Bussin Products.PNG" alt="Bussin Salsa lineup showing Mild, Medium, and Hot jars" />
+        </aside>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="container story-grid">
+        <div class="panel story-copy">
+          <div class="section-title">
+            <div class="eyebrow">Our story</div>
+            <h2>From Veracruz to Connecticut</h2>
+          </div>
+
+          <p>
+            I’ve always been passionate about flavor—about the way food can capture a place, a memory, and a feeling
+            all at once. During my travels through <strong>Veracruz, Mexico</strong>, I experienced salsa macha in a way that
+            truly stayed with me. It wasn’t just spicy. It was smoky, layered, deep, and full of character.
+          </p>
+
+          <p>
+            That flavor connected with something in me. It reflected the kind of culinary experience I love most—bold,
+            authentic, and unforgettable. I was impressed by how a single spoonful could carry warmth, richness, and
+            tradition all at once. In that moment, I knew I wanted to bring that feeling back with me and share it
+            with others.
+          </p>
+
+          <p>
+            Bussin Salsa is my way of turning that experience into something people can taste and enjoy here in the
+            United States. It’s inspired by the soul of salsa macha, but elevated with premium ingredients like
+            <strong>olive oil, pistachios, carefully selected chiles, and spices</strong> to create something distinctive,
+            rich, and modern.
+          </p>
+
+          <p>
+            This isn’t just about heat. It’s about depth. It’s about the smoky flavor that caught my inner self and
+            made me want to create something special. Bussin Salsa is meant to share that story—one jar, one bite, and
+            one unforgettable experience at a time.
+          </p>
+        </div>
+
+        <div class="panel">
+          <div class="quote">
+            “I didn’t just want to make a sauce. I wanted to bottle the feeling I had when I first tasted the smoky,
+            unforgettable soul of salsa macha in Veracruz.”
+          </div>
+
+          <div class="checklist">
+            <div class="check"><span>✓</span><div>Inspired by the bold culinary traditions of Veracruz.</div></div>
+            <div class="check"><span>✓</span><div>Crafted with a premium approach using olive oil, pistachios, and layered spices.</div></div>
+            <div class="check"><span>✓</span><div>Designed to bring smoke, richness, and character—not just heat.</div></div>
+            <div class="check"><span>✓</span><div>Built to share a personal flavor journey with every customer.</div></div>
+          </div>
+
+          <div class="gallery-wrap">
+            <img class="gallery-image" src="Bussin all jars 2.PNG" alt="Bussin Salsa flavors Mild Medium Hot" />
+            <div class="gallery-caption">Bussin Salsa lineup: Mild, Medium, and Hot.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="flavors">
+      <div class="container">
+        <div class="section-title">
+          <div class="eyebrow">The lineup</div>
+          <h2>Choose your flavor level</h2>
+          <p>
+            Every 5 oz jar is priced at $12.99 before tax. Each version keeps the smoky Bussin character,
+            with different levels of heat and intensity.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <img class="product-image" src="bussin_mild.png" alt="Bussin Salsa Mild jar" />
+            <div class="heat mild">Mild</div>
+            <h3>Mild</h3>
+            <p class="jar-size">5 oz jar</p>
+            <p>A softer introduction to salsa macha with smoky depth and a smoother finish.</p>
+            <div class="price">$12.99</div>
+          </article>
+
+          <article class="product-card">
+            <img class="product-image" src="bussin_medium.png" alt="Bussin Salsa Medium jar" />
+            <div class="heat medium">Medium</div>
+            <h3>Medium</h3>
+            <p class="jar-size">5 oz jar</p>
+            <p>The balanced option—enough heat to wake up the palate while keeping the richness front and center.</p>
+            <div class="price">$12.99</div>
+          </article>
+
+          <article class="product-card">
+            <img class="product-image" src="bussin_hot.PNG" alt="Bussin Salsa Hot jar" />
+            <div class="heat hot">Hot</div>
+            <h3>Hot</h3>
+            <p class="jar-size">5 oz jar</p>
+            <p>A more intense jar for people who want the smoky character to come with a stronger fire.</p>
+            <div class="price">$12.99</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ingredients">
+      <div class="container">
+        <div class="section-title">
+          <div class="eyebrow">Why Bussin stands out</div>
+          <h2>Premium ingredients. Elevated salsa macha.</h2>
+          <p>We respect the tradition while creating a more premium expression of flavor.</p>
+        </div>
+
+        <div class="ingredients-grid">
+          <div class="ingredient-card">
+            <h3>Olive Oil</h3>
+            <p>We elevate the texture and richness with olive oil, creating a smoother, more refined finish.</p>
+          </div>
+
+          <div class="ingredient-card">
+            <h3>Pistachios</h3>
+            <p>Pistachios add subtle nuttiness, body, and a premium signature that makes Bussin Salsa stand apart.</p>
+          </div>
+
+          <div class="ingredient-card">
+            <h3>Chiles & Spices</h3>
+            <p>Selected chiles and layered spices create the smoky, bold flavor profile that defines the Bussin experience.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="order">
+      <div class="container order-grid">
+        <div class="panel">
+          <div class="section-title">
+            <div class="eyebrow">Place an order</div>
+            <h2>Order Bussin Salsa</h2>
+            <p>
+              Customers can submit an order here. This version calculates Connecticut sales tax and prepares
+              the order details so you can later connect it to your email or checkout system.
+            </p>
+          </div>
+
+          <div class="summary">
+            <div class="summary-row"><span>Available flavors</span><strong>Mild / Medium / Hot</strong></div>
+            <div class="summary-row"><span>Jar size</span><strong>5 oz</strong></div>
+            <div class="summary-row"><span>Price per jar</span><strong>$12.99</strong></div>
+            <div class="summary-row"><span>Connecticut sales tax</span><strong>6.35%</strong></div>
+            <div class="summary-row total"><span>Live order total</span><strong id="orderTotal">$13.81</strong></div>
+          </div>
+
+          <p class="note" style="margin-top: 16px;">
+            Current site behavior: the form generates order details on the page and opens the customer’s email app.
+            Later, a developer can connect this to Stripe, Shopify, Square, or a backend email service.
+          </p>
+        </div>
+
+        <div class="panel">
+          <form id="orderForm">
+            <div class="field-grid">
+              <div>
+                <label for="customerName">Full Name</label>
+                <input id="customerName" name="customerName" type="text" placeholder="Your full name" required />
+              </div>
+              <div>
+                <label for="customerEmail">Email</label>
+                <input id="customerEmail" name="customerEmail" type="email" placeholder="you@example.com" required />
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <div>
+                <label for="flavor">Flavor</label>
+                <select id="flavor" name="flavor" required>
+                  <option value="Mild">Mild</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Hot">Hot</option>
+                </select>
+              </div>
+              <div>
+                <label for="quantity">Quantity</label>
+                <input id="quantity" name="quantity" type="number" min="1" value="1" required />
+              </div>
+            </div>
+
+            <div>
+              <label for="address">Shipping Address</label>
+              <textarea id="address" name="address" rows="4" placeholder="Street, city, state, ZIP" required></textarea>
+            </div>
+
+            <div>
+              <label for="notes">Notes</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Any special delivery notes or questions"></textarea>
+            </div>
+
+            <div class="field-grid">
+              <button type="button" class="btn btn-secondary" id="previewBtn">Preview Order</button>
+              <button type="submit" class="btn btn-primary">Send Order Request</button>
+            </div>
+          </form>
+
+          <div style="margin-top: 18px;">
+            <label>Order Preview</label>
+            <div class="email-preview" id="emailPreview">Fill out the form and click “Preview Order” to see the order details here.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>Bussin Salsa</strong>
+        <div class="small">Premium salsa macha inspired by Veracruz and crafted to be shared.</div>
+      </div>
+      <div class="small">© <span id="year"></span> Bussin Salsa. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const PRICE = 12.99;
+    const CT_TAX = 0.0635;
+    const ORDER_EMAIL = "orders@bussinsalsa.com"; // replace later with your real email
+
+    const quantityInput = document.getElementById("quantity");
+    const flavorInput = document.getElementById("flavor");
+    const totalEl = document.getElementById("orderTotal");
+    const previewEl = document.getElementById("emailPreview");
+    const form = document.getElementById("orderForm");
+    const previewBtn = document.getElementById("previewBtn");
+
+    function currency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+      }).format(value);
+    }
+
+    function calculateTotal(quantity) {
+      const subtotal = PRICE * quantity;
+      const tax = subtotal * CT_TAX;
+      return {
+        subtotal,
+        tax,
+        total: subtotal + tax
+      };
+    }
+
+    function updateTotal() {
+      const quantity = Math.max(parseInt(quantityInput.value || "1", 10), 1);
+      const totals = calculateTotal(quantity);
+      totalEl.textContent = currency(totals.total);
+      return totals;
+    }
+
+    function buildPreview() {
+      const quantity = Math.max(parseInt(quantityInput.value || "1", 10), 1);
+      const totals = calculateTotal(quantity);
+      const name = document.getElementById("customerName").value || "[Customer name]";
+      const email = document.getElementById("customerEmail").value || "[Customer email]";
+      const flavor = flavorInput.value;
+      const address = document.getElementById("address").value || "[Shipping address]";
+      const notes = document.getElementById("notes").value || "None";
+
+      const preview =
+`New Bussin Salsa Order
+
+Customer: ${name}
+Email: ${email}
+Flavor: ${flavor}
+Quantity: ${quantity}
+Jar Size: 5 oz
+Price per jar: ${currency(PRICE)}
+Subtotal: ${currency(totals.subtotal)}
+CT Tax (6.35%): ${currency(totals.tax)}
+Total: ${currency(totals.total)}
+
+Shipping Address:
+${address}
+
+Notes:
+${notes}`;
+
+      previewEl.textContent = preview;
+      return preview;
+    }
+
+    quantityInput.addEventListener("input", updateTotal);
+    flavorInput.addEventListener("change", buildPreview);
+
+    previewBtn.addEventListener("click", () => {
+      updateTotal();
+      buildPreview();
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const preview = buildPreview();
+      const subject = encodeURIComponent("New Bussin Salsa Order Request");
+      const body = encodeURIComponent(preview);
+      window.location.href = `mailto:${ORDER_EMAIL}?subject=${subject}&body=${body}`;
+    });
+
+    updateTotal();
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
